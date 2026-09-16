@@ -15,11 +15,11 @@ metadata:
     - java
     - quarkus
   links:
-    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api
-      title: OpenShift Dev Spaces (VS Code)
+    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api?ai-provider=opencodeai/opencode
+      title: OpenShift Dev Spaces (OpenCode)
       icon: web
-    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api?che-editor=che-incubator/che-idea/latest
-      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api?ai-provider=anthropic/claude
+      title: OpenShift Dev Spaces (Claude)
       icon: web
 spec:
   type: service
