@@ -1,0 +1,41 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "platformcon-api"
+  description: "A cool quarkus API"
+  annotations:
+    argocd/app-selector: tssc/gitops=platformcon-api
+    backstage.io/kubernetes-id: platformcon-api
+    janus-idp.io/tekton: platformcon-api
+    backstage.io/source-location: url:https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api
+    backstage.io/techdocs-ref: url:https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api
+    gitlab.com/project-slug: development/platformcon-api
+    quay.io/repository-slug: "tssc/platformcon-api"
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.cluster-kql8t.dyn.redhatworkshops.io/#https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/development/platformcon-api?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/user5"
+  providesApis:
+    - "platformcon-api"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "platformcon-api"
+  description: "A cool quarkus API"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user:default/user5"
+  definition:
+    $text: ./openapi.yaml
