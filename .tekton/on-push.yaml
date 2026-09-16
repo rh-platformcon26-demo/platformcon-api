@@ -39,7 +39,7 @@ spec:
     - name: event-type
       value: '{{event_type}}'
   pipelineRef:
-    name: maven-build-ci
+    name: maven-build-ci-simple
   workspaces:
     - name: gitops-auth
       secret:
