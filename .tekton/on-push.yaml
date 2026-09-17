@@ -4,7 +4,7 @@ metadata:
   name: maven-image-build
   annotations:
     pipelinesascode.tekton.dev/on-cel-expression: |
-      body.object_kind == "push" && body.ref == "refs/heads/master"
+      body.object_kind == "push"
     pipelinesascode.tekton.dev/pipeline: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/pipelines/maven-build-ci-simple.yaml"
     pipelinesascode.tekton.dev/task-0: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/init.yaml"
     pipelinesascode.tekton.dev/task-1: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/git-clone.yaml"
@@ -58,3 +58,6 @@ spec:
               storage: 1Gi
     - name: maven-settings
       emptyDir: {}
+    - name: maven-cache
+      persistentVolumeClaim:
+        claimName: maven-cache-pvc2
