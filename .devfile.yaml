@@ -38,6 +38,9 @@ components:
   - name: m2
     volume:
       size: 1G
+  - name: home
+    volume:
+      size: 4Gi
   - name: rhtas-clis-unzip
     container:
       command:
