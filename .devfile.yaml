@@ -18,6 +18,8 @@ components:
       volumeMounts:
         - name: m2
           path: /home/user/.m2
+        - name: home
+          path: /projects/home
       endpoints:
         - name: quarkus-dev
           targetPort: 8080
