@@ -38,6 +38,29 @@ components:
   - name: m2
     volume:
       size: 1G
+  - name: rhtas-clis-unzip
+    container:
+      command:
+      - /bin/bash
+      - -c
+      - |
+        mkdir -p /projects/home/bin
+        cd /tmp
+        wget -q http://cli-server.trusted-artifact-signer.svc:8080/clients/linux/cosign-amd64.gz
+        wget -q http://cli-server.trusted-artifact-signer.svc:8080/clients/linux/gitsign-amd64.gz
+        gunzip cosign-amd64.gz
+        chmod a+x cosign-amd64
+        mv cosign-amd64 /projects/home/bin/cosign
+        gunzip gitsign-amd64.gz
+        chmod a+x gitsign-amd64
+        mv gitsign-amd64 /projects/home/bin/gitsign
+      image: registry.access.redhat.com/ubi9/toolbox@sha256:47d4891b3e744f5622a31bd21a42dd51358c43bbfd44860cc05c7b29cc520e66
+      sourceMapping: /projects
+      mountSources: true
+      memoryLimit: 256M
+      volumeMounts:
+      - name: home
+        path: /projects/home
 commands:
   - id: package
     exec:
@@ -55,3 +78,29 @@ commands:
       group:
         kind: run
         isDefault: true
+  - apply:
+      component: rhtas-clis-unzip
+      label: Unzip RHTAS CLIs
+    id: cp-rhtas-clis-unzip
+  - id: init-gitsign
+    exec:
+      label: "Initialize gitsign"
+      component: development-tooling
+      workingDir: /home/user
+      commandLine: |
+        git config --global commit.gpgsign true
+        git config --global tag.gpgsign true
+        git config --global gpg.x509.program /projects/home/bin/gitsign
+        git config --global gpg.format x509
+        git config --global gitsign.fulcio http://fulcio-server.tssc-tas.svc
+        git config --global gitsign.issuer https://sso.apps.cluster-kql8t.dyn.redhatworkshops.io/realms/tssc-iam
+        git config --global gitsign.rekor http://rekor-server.tssc-tas.svc
+        git config --global gitsign.clientid trusted-artifact-signer
+      group:
+        kind: build
+        isDefault: true
+events:
+  preStart:
+    - cp-rhtas-clis-unzip
+  postStart:
+    - init-gitsign
