@@ -87,6 +87,13 @@ commands:
       component: rhtas-clis-unzip
       label: Unzip RHTAS CLIs
     id: cp-rhtas-clis-unzip
+  - id: relaunch-pipelinerun
+    exec:
+      label: "Relaunch the last pipelinerun"
+      component: development-tooling
+      commandLine: 'tkn pr export $(tkn pr list --limit 1 -n tssc-app-ci -o jsonpath={''.items[0].metadata.name''}) -n tssc-app-ci | kubectl create -f - -n tssc-app-ci'
+      group:
+        kind: build
   - id: init-gitsign
     exec:
       label: "Initialize gitsign"
