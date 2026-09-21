@@ -19,6 +19,7 @@ metadata:
     pipelinesascode.tekton.dev/task-10: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/upload-sbom-to-trustification.yaml"
     pipelinesascode.tekton.dev/task-11: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/verify-commit.yaml"
     pipelinesascode.tekton.dev/task-12: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/maven-21.yaml"
+    pipelinesascode.tekton.dev/task-13: "https://gitlab-gitlab.apps.cluster-kql8t.dyn.redhatworkshops.io/rhdh/tssc-sample-pipelines/-/raw/main/tasks/buildah.yaml"
   labels:
     backstage.io/kubernetes-id: "platformcon-api"
 spec:
